@@ -1,26 +1,22 @@
-# unable to understand collections and deque. Is it an inbuild module or downloaded module. What does it do?
-# what is deque?
+# collections is a inbuilt module in python
+# deque is a special data structure - Double Ended Queue. It is a data structure that allows you to add and remove elements from both ends.
 from collections import deque
 import time
 
 class SwipeDetector:
     def __init__(self):
-        # why are we creating all these properties and what do they do?
-        # unable to understand the high level overview
-        self.positions = deque(maxlen=15)
+        self.positions = deque(maxlen=15) # It is recoding current time and hand movement
         self.swipe_threshold = 0.18 # could not understand the concept of swipe_threshold
-        self.cooldown = 0.8 # could not understand the concept of cooldown
-        self.last_swipte_time = 0
+        self.cooldown = 0.8 # waiting period between each swipe detection
+        self.last_swipte_time = 0 # this remembers when the last swipe detected
 
     def detect(self, x):
         # what is time.monotonic()?
-        current_time = time.monotonic()
+        current_time = time.monotonic() # monotonic gives us a clock time that continuously increases
 
-        # stored normalized X coooordinate and timestamp
-        # what is x?
         self.positions.append((current_time, x))
 
-        # why less than 5 only
+        # atlest 5 history is required to delect a swipe
         if len(self.positions) < 5:
             return None
 
@@ -41,19 +37,15 @@ class SwipeDetector:
 
         movement = new_x - old_x
 
-        # cooldown prevents repeated detection
-        # could not understand the logic
         if current_time - self.last_swipte_time < self.cooldown:
             return None
 
-        # could not understand this function at all
         if movement < -self.swipe_threshold:
             self.last_swipte_time = current_time
             self.positions.clear()
 
             return "SWIPE LEFT"
 
-        # could not understand this function at all
         elif movement > self.swipe_threshold:
             self.last_swipte_time = current_time
             self.positions.clear()
