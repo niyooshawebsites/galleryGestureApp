@@ -26,7 +26,7 @@ while camera.isOpened():
 
     frame = cv2.flip(frame,  1)
 
-    height, width, _ = frame.shape()
+    height, width, _ = frame.shape
 
     # convert BGR to RGB
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

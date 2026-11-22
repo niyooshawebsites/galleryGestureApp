@@ -60,4 +60,6 @@ class SwipeDetector:
 
             return "SWIPE RIGHT"
 
+        print("Movement: ", round(movement, 3))
+
         return None
